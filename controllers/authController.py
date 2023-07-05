@@ -25,7 +25,7 @@ class AuthController:
                 raise
             except:
                 return jsonify({'message': 'Email or password is incorrect'}), 401
-        except:
+        except KeyError:
             return jsonify({'message': 'The request body required username, password'}), 400
 
     @staticmethod
@@ -40,12 +40,9 @@ class AuthController:
             if existing_user:
                 return jsonify({'message': 'Username already exists'}), 400
 
-            # Set the default role for the user
-            default_role = 'user'
-
             # Create a new user
             hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-            new_user = User(username=username, password=hashed_password, role=default_role)
+            new_user = User(username=username, password=hashed_password)
             db.session.add(new_user)
             db.session.commit()
 

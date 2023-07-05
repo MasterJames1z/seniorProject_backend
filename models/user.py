@@ -6,12 +6,10 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255))
-    anime_id = db.Column(db.Integer, nullable=True)
 
     def __init__(self, username, password, anime_id):
         self.username = username
         self.password = password
-        self.anime_id = anime_id
 
     @property
     def serialize(self):
@@ -19,5 +17,4 @@ class User(db.Model):
             'id': self.id,
             'username': self.username,
             'password': self.password,
-            'anime_id': self.anime_id
         }

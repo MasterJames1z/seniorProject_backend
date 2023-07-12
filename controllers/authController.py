@@ -24,7 +24,7 @@ class AuthController:
                     return jsonify({'user': user_serialize, 'token': token}), 200
                 raise
             except:
-                return jsonify({'message': 'Email or password is incorrect'}), 401
+                return jsonify({'message': 'Username or password is incorrect'}), 401
         except KeyError:
             return jsonify({'message': 'The request body required username, password'}), 400
 

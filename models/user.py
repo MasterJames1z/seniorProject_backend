@@ -6,10 +6,12 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(255), unique=True)
     password = db.Column(db.String(255),nullable=False)
+    distance = db.Column(db.Integer)
 
-    def __init__(self, username, password):
+    def __init__(self, username, password,distance):
         self.username = username
         self.password = password
+        self.distance = distance
 
     @property
     def serialize(self):
@@ -17,4 +19,5 @@ class User(db.Model):
             'id': self.id,
             'username': self.username,
             'password': self.password,
+            'distance': self.distance
         }

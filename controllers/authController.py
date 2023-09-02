@@ -33,6 +33,9 @@ class AuthController:
         try:
             username = request.get_json()['username']
             password = request.get_json()['password']
+            distance = request.get_json()['distance']
+            car = request.get_json()['car']
+            battery = request.get_json()['battery']
 
             # Check if the username already exists in the user table
             existing_user = User.query.filter_by(username=username).first()
@@ -42,7 +45,7 @@ class AuthController:
 
             # Create a new user
             hashed_password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
-            new_user = User(username=username, password=hashed_password)
+            new_user = User(username=username, password=hashed_password, distance=distance, car=car, battery=battery)
             db.session.add(new_user)
             db.session.commit()
 

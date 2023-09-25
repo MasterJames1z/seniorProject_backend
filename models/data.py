@@ -39,6 +39,7 @@ class Tripplan(db.Model):
     @property
     def serialize(self):
         return {
+            'id': self.id,
             'user_id': self.user_id,
             'origin': self.origin,
             'destination': self.destination,

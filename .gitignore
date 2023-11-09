@@ -24,4 +24,3 @@ htmlcov/
 .coverage.*
 *,cover
   25 changes: 25 additions & 0 deletions25
-app.py
